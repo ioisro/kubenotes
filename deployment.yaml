@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - name: springboot-app-container
+        image: ioisro/talknotes-tasks:latest
+        ports:
+        - containerPort: 8080
